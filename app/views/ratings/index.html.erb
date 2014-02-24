@@ -1,0 +1,38 @@
+<h2>List of ratings</h2>
+
+<p>Number of ratings <%= @ratings.count %></p>
+
+<ul>
+  <% @ratings.each do |rating| %>
+      <li> <%= rating %> <%= link_to rating.user.username, rating.user %> </li>
+  <% end %>
+</ul>
+
+<p><%= render 'list', items: @top_breweries, item: "Breweries" %></p>
+<p><%= render 'list', items: @top_beers, item: "Beers" %></p>
+<p><%= render 'list', items: @top_styles, item: "Styles" %></p>
+
+<h2>Top raters:</h2>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Ratings</th>
+  </tr>
+  </thead>
+  <tbody>
+ <% @top_raters.each do |user| %>
+   <tr>
+      <td> <%= user.username %> </td>
+      <td><%= user.ratings.count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Recent ratings:</h2>
+<p>  
+  <% @ratings.recent.each do |r| %>
+    <p> <%= r %> </p>
+  <% end %>
+</p>
